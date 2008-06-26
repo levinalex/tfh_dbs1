@@ -2,14 +2,13 @@
 
 SELECT 
   artst.artnr, artst.artbez, artgru.grup_txt,
-  sum(aufpos.menge) as anzahl, 
+  count(aufpos.aufnr) as anzahl, 
   sum(aufpos.preis * aufpos.menge) as wert
 FROM artst, aufpos, artgru
 WHERE artst.artnr = aufpos.artnr AND artgru.gruppe = artst.gruppe
 GROUP BY artst.artnr, artst.artbez, artgru.grup_txt
 HAVING count(artst.artnr) > 1
 ORDER BY artst.artnr
-
 
 -- Aufgabe 1.2 (mit subquery)
 
@@ -19,7 +18,6 @@ WHERE kdst.vertreter = vert.vertnr AND kdbra.branche = kdst.branche AND (
   SELECT avg(k2.umssoll) 
   FROM kdst k2
   WHERE k2.branche = kdst.branche) < kdst.umssoll
-
 
 -- Aufgabe 1.3
 
@@ -37,7 +35,6 @@ WHERE
   kdst.kdgruppe IS NOT NULL AND
   kdgru.kdgruppe = kdst.kdgruppe
 ORDER BY kdgru.grup_txt
-
 
 -- Aufgabe 1.4
 
@@ -71,7 +68,6 @@ FROM e
 LEFT JOIN e mng ON e.manager = mng.empno
 WHERE mng.job = 'MANAGER'
 ORDER BY mng.salary - e.salary
--- (nein, Jones verdient weniger als seine Mitarbeiter)
 
 -- Aufgabe 1.7
 
@@ -81,7 +77,8 @@ WHERE
   jones.suppname = 'Jones' AND
   jones.city = s.city AND
   s.suppno = sp.suppno AND
-  p.partno = sp.partno
+  p.partno = sp.partno AND
+  s.suppname != jones.suppname
 GROUP BY s.suppname, p.partname
 
 -- Aufgabe 1.8
