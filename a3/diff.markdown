@@ -13,7 +13,7 @@
 
 
 3. Unser Datenbankschema ermöglicht Schildtexte in unterschiedlichen 
-   Sprachen zu speichern.  Es ist dabei möglich nachzuverfolgen von 
+   Sprachen zu speichern.  Es wäre dabei möglich nachzuverfolgen von 
    welcher Originalversion ein Text übersetzt wurde.
 
    (Das resultiert aus der Aufgabenstellung, nach nach der wir darauf achten
@@ -27,9 +27,11 @@
 5. Individuen sind bei unserem Schema weniger prominent (bei Vögeln wird der 
    Geburtsort usw. nicht erfasst und sie haben keine Namen)
    
+   Auf unseren Schildern war bevorzugte Narung nicht angegeben.
+   
 
 6. Wir erfassen das Geschlecht der Individuen nicht.  Die ISMALE-Spalte im Baer Schema
-   ist seltsam, da es nicht für alle Tiere ausricht (Frösche haben kein definiertes Geschlecht)
+   ist seltsam, da es nicht für alle Tiere ausreicht (Frösche haben zB kein definiertes Geschlecht)
    
    HL-7 kennt zum Beispiel sechs verschiedene Werte:
    
@@ -39,3 +41,10 @@
      * U - Unknown
      * A - Ambiguous
      * N - Not applicable
+     
+---
+
+# Fixes und Fehler im SQL-Schema
+
+* Wir haben in ANIMALSYSTEMTYPE "Unterfamilie" und "Gattung" eingefügt.  Entenvögel (ID=146) waren falsch als Ordnung klassifiziert.
+
